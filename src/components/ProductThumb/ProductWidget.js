@@ -17,11 +17,11 @@ const ProductWidget = ({
       <div className="single-widget-product">
         <div className="single-widget-product__image">
           <Anchor
-            path={`/shop/product-basic/${product.slug}`}
+            path={`/shop/product-basic/${product.code}`}
             className="image-wrap"
           >
               <img
-                src={process.env.PUBLIC_URL + product.thumbImage[0]}
+                src={product.images[0].url}
                 className="img-fluid"
                 alt={product.name}
               />
@@ -30,7 +30,7 @@ const ProductWidget = ({
         <div className="single-widget-product__content">
           <div className="single-widget-product__content__top">
             <h3 className="product-title space-mb--10">
-              <Anchor path={`/shop/product-basic/${product.slug}`}>
+              <Anchor path={`/shop/product-basic/${product.code}`}>
                 {product.name}
               </Anchor>
             </h3>
@@ -60,7 +60,7 @@ const ProductWidget = ({
               </a>
             ) : product.variation && product.variation.length >= 1 ? (
               <Anchor
-                path={`/shop/product-basic/${product.slug}`}
+                path={`/shop/product-basic/${product.code}`}
                 className="cart-btn"
               >
                 Select Option

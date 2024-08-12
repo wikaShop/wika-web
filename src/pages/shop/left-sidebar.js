@@ -1,18 +1,13 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import {useEffect, useState} from "react";
+import {Col, Container, Row} from "react-bootstrap";
 import Paginator from "react-hooks-paginator";
-import { SlideDown } from "react-slidedown";
-import { LayoutTwo } from "../../components/Layout";
-import { BreadcrumbOne } from "../../components/Breadcrumb";
+import {SlideDown} from "react-slidedown";
+import {LayoutTwo} from "../../components/Layout";
+import {BreadcrumbOne} from "../../components/Breadcrumb";
 import Anchor from "../../components/anchor";
-import {
-  ShopHeader,
-  ShopFilter,
-  ShopSidebar,
-  ShopProducts
-} from "../../components/Shop";
-import { getSortedProducts } from "../../lib/product";
+import {ShopFilter, ShopHeader, ShopProducts, ShopSidebar} from "../../components/Shop";
+import {getSortedProducts} from "../../lib/product";
+import apiClient from "../../axios/axios";
 
 
 const LeftSidebar = () => {
@@ -26,7 +21,11 @@ const LeftSidebar = () => {
   const [currentData, setCurrentData] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([]);
   const [shopTopFilterStatus, setShopTopFilterStatus] = useState(false);
-  const { products } = useSelector((state) => state.product);
+  const [products, setProducts] = useState([]);
+  //const  products  = []
+
+
+
 
   const pageLimit = 20;
 
@@ -45,16 +44,34 @@ const LeftSidebar = () => {
   };
 
   useEffect(() => {
+    console.log("Cargo")
+    apiClient.get('/product')
+        .then(response => {
+          console.log(response.data.data)
+          const finalProducts=response.data.data.map((product)=>({...product,category:[],discount:0,image:[]}))
+          setProducts(finalProducts)
+        })
+        .catch(error => console.error('Error fetching data:', error))
+        .finally(()=> {
+
+        })
+  }, []);
+
+  useEffect(() => {
     let sortedProducts = getSortedProducts(products, sortType, sortValue);
-    const filterSortedProducts = getSortedProducts(
-      sortedProducts,
-      filterSortType,
-      filterSortValue
+    sortedProducts = getSortedProducts(
+        sortedProducts,
+        filterSortType,
+        filterSortValue
     );
-    sortedProducts = filterSortedProducts;
     setSortedProducts(sortedProducts);
     setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
+
+
   }, [offset, products, sortType, sortValue, filterSortType, filterSortValue]);
+
+
+
 
   return (
     <LayoutTwo>

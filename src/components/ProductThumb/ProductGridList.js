@@ -28,15 +28,15 @@ const ProductGridList = ({
         <div className="product-grid">
           {/*=======  single product image  =======*/}
           <div className="product-grid__image">
-            <Anchor path={`/shop/product-basic/${product.slug}`} className="image-wrap">
+            <Anchor path={`/shop/product-basic/${product.code}`} className="image-wrap">
                 <img
-                  src={process.env.PUBLIC_URL + product.thumbImage[0]}
+                  src={product.images[0].url}
                   className="img-fluid"
                   alt={product.name}
                 />
-                {product.thumbImage.length > 1 ? (
+                {product.images.length > 1 ? (
                   <img
-                    src={process.env.PUBLIC_URL + product.thumbImage[1]}
+                    src={ product.images[1].url}
                     className="img-fluid"
                     alt={product.name}
                   />
@@ -131,7 +131,7 @@ const ProductGridList = ({
           <div className="product-grid__content">
             <div className="title">
               <h3>
-                <Anchor path={`/shop/product-basic/${product.slug}`}>
+                <Anchor path={`/shop/product-basic/${product.code}`}>
                   {product.name}
                 </Anchor>
               </h3>
@@ -141,7 +141,7 @@ const ProductGridList = ({
                   Buy now
                 </a>
               ) : product.variation && product.variation.length >= 1 ? (
-                <Anchor path={`/shop/product-basic/${product.slug}`}>
+                <Anchor path={`/shop/product-basic/${product.code}`}>
                   Select Option
                 </Anchor>
               ) : product.stock && product.stock > 0 ? (
@@ -174,15 +174,15 @@ const ProductGridList = ({
         <div className="product-list">
           {/*=======  single product image  =======*/}
           <div className="product-list__image">
-            <Anchor path={`/shop/product-basic/${product.slug}`} className="image-wrap">
+            <Anchor path={`/shop/product-basic/${product.code}`} className="image-wrap">
                 <img
-                  src={process.env.PUBLIC_URL + product.thumbImage[0]}
+                  src={product.images[0].url}
                   className="img-fluid"
                   alt={product.name}
                 />
-                {product.thumbImage.length > 1 ? (
+                {product.images.length > 1 ? (
                   <img
-                    src={process.env.PUBLIC_URL + product.thumbImage[1]}
+                    src={product.images[1].url}
                     className="img-fluid"
                     alt={product.name}
                   />
@@ -277,7 +277,7 @@ const ProductGridList = ({
           <div className="product-list__content">
             <div className="title">
               <h3>
-                <Anchor path={`/shop/product-basic/${product.slug}`}>
+                <Anchor path={`/shop/product-basic/${product.code}`}>
                   {product.name}
                 </Anchor>
               </h3>
@@ -306,7 +306,7 @@ const ProductGridList = ({
                 </a>
               ) : product.variation && product.variation.length >= 1 ? (
                 <Anchor
-                  path={`/shop/product-basic/${product.slug}`}
+                  path={`/shop/product-basic/${product.code}`}
                   className="lezada-button lezada-button--medium"
                 >
                     Select Option

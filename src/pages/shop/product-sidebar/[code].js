@@ -95,7 +95,7 @@ const ProductSidebar = ({ product }) => {
 export async function getStaticPaths() {
   // get the paths we want to pre render based on products
   const paths = products.map((product) => ({
-    params: { slug: product.slug }
+    params: { code: product.code }
   }));
 
   return { paths, fallback: false };
@@ -103,7 +103,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // get product data based on slug
-  const product = products.filter((single) => single.slug === params.slug)[0];
+  const product = products.filter((single) => single.code === params.code)[0];
 
   return { props: { product } };
 }

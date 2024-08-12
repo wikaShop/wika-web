@@ -61,20 +61,19 @@ const Compare = () => {
                                       </button>
                                     </div>
                                     <Anchor
-                                      path={`/shop/product-basic/${product.slug}`}
+                                      path={`/shop/product-basic/${product.code}`}
                                       className="image"
                                     >
                                         <img
                                           className="img-fluid"
                                           src={
-                                            process.env.PUBLIC_URL +
-                                            product.thumbImage[0]
+                                            product.images[0].url
                                           }
                                           alt=""
                                         />
                                     </Anchor>
                                     <div className="product-title">
-                                      <Anchor path={`/shop/product-basic/${product.slug}`}>
+                                      <Anchor path={`/shop/product-basic/${product.code}`}>
                                         {product.name}
                                       </Anchor>
                                     </div>
@@ -91,7 +90,7 @@ const Compare = () => {
                                       ) : product.variation &&
                                         product.variation.length >= 1 ? (
                                         <Anchor
-                                          path={`/shop/product-basic/${product.slug}`}
+                                          path={`/shop/product-basic/${product.code}`}
                                           className="lezada-button lezada-button--primary"
                                         >
                                           Select Option

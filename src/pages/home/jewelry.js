@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Spectral } from "@next/font/google";
+import { Spectral } from "next/font/google";
 import { getProducts } from "../../lib/product";
 import { LayoutTen } from "../../components/Layout";
 import { HeroSliderEight } from "../../components/HeroSlider";

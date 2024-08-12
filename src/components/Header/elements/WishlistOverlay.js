@@ -57,10 +57,10 @@ const WishlistOverlay = ({
                           </button>
                         </span>
                         <div className="image">
-                          <Anchor path={`/shop/product-basic/${product.slug}`}>
+                          <Anchor path={`/shop/product-basic/${product.code}`}>
                               <img
                                 src={
-                                  process.env.PUBLIC_URL + product.thumbImage[0]
+                                  product.images[0].url
                                 }
                                 className="img-fluid"
                                 alt=""
@@ -69,7 +69,7 @@ const WishlistOverlay = ({
                         </div>
                         <div className="content">
                           <h5>
-                            <Anchor path={`/shop/product-basic/${product.slug}`}>
+                            <Anchor path={`/shop/product-basic/${product.code}`}>
                               {product.name}
                             </Anchor>
                           </h5>

@@ -21,8 +21,9 @@ const ImageGalleryBottomThumb = ({
   const [index, setIndex] = useState(-1);
   const dispatch = useDispatch();
 
-  const slides = product?.image.map((img, i) => ({
-      src: process.env.PUBLIC_URL + img,
+  console.log(product)
+  const slides = product?.images.map((img, i) => ({
+      src: img.url,
       key: i,
   }));
 
@@ -94,9 +95,9 @@ const ImageGalleryBottomThumb = ({
             </button>
           </Tooltip>
         </div>
-        {!!product.image.length && (
+        {!!product.images.length && (
           <Swiper options={gallerySwiperParams}>
-            {product.image.map((image, i) => (
+            {product.images.map((image, i) => (
               <SwiperSlide key={i}>
                 <button className="enlarge-icon" onClick={() => setIndex(i)}>
                   <Tooltip
@@ -112,7 +113,7 @@ const ImageGalleryBottomThumb = ({
                 </button>
                 <div className="single-image">
                   <img
-                    src={process.env.PUBLIC_URL + image}
+                    src={image.url}
                     className="img-fluid"
                     alt=""
                   />
@@ -130,13 +131,13 @@ const ImageGalleryBottomThumb = ({
         />
       </div>
       <div className="product-small-image-wrapper">
-        {!!product.image.length && (
+        {!!product.images.length && (
           <Swiper options={thumbnailSwiperParams}>
-            {product.image.map((image, i) => (
+            {product.images.map((image, i) => (
               <SwiperSlide key={i}>
                 <div className="single-image">
                   <img
-                    src={process.env.PUBLIC_URL + image}
+                    src={image.url}
                     className="img-fluid"
                     alt=""
                   />

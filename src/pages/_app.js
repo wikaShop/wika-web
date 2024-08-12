@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react";
 import Head from "next/head";
-import { Work_Sans } from "@next/font/google";
+import { Work_Sans } from "next/font/google";
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
 import { wrapper } from "../store";

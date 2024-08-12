@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Container, Row } from "react-bootstrap";
-import { Spectral } from "@next/font/google";
+import { Spectral } from "next/font/google";
 import { getProducts } from "../../lib/product";
 import { ProductGridWrapper } from "../../components/ProductThumb";
 import { LayoutTwo } from "../../components/Layout";

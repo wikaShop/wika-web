@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Allura } from "@next/font/google";
+import { Allura } from "next/font/google";
 import { useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { IoIosAdd } from "react-icons/io";

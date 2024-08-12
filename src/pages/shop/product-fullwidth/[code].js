@@ -1,22 +1,17 @@
-import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { LayoutTwo } from "../../../components/Layout";
 import { getDiscountPrice } from "../../../lib/product";
 import { BreadcrumbOne } from "../../../components/Breadcrumb";
 import {
-  ImageGalleryBottomThumb,
+  ImageGalleryLeftThumb,
   ProductDescription,
   ProductDescriptionTab
 } from "../../../components/ProductDetails";
 import Anchor from "../../../components/anchor";
 import products from "../../../data/products.json";
 
-const ProductBasic = ({ product }) => {
-  useEffect(() => {
-    document.querySelector("body").classList.remove("overflow-hidden");
-  });
-
+const ProductFullwidth = ({ product }) => {
   const { cartItems } = useSelector((state) => state.cart);
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const { compareItems } = useSelector((state) => state.compare);
@@ -61,11 +56,11 @@ const ProductBasic = ({ product }) => {
 
       {/* product details */}
       <div className="product-details space-mt--r100 space-mb--r100">
-        <Container>
+        <Container className="wide">
           <Row>
             <Col lg={6} className="space-mb-mobile-only--50">
-              {/* image gallery bottom thumb */}
-              <ImageGalleryBottomThumb
+              {/* image gallery left thumb */}
+              <ImageGalleryLeftThumb
                 product={product}
                 wishlistItem={wishlistItem}
               />
@@ -96,13 +91,10 @@ const ProductBasic = ({ product }) => {
   );
 };
 
-
-export default ProductBasic;
-
 export async function getStaticPaths() {
   // get the paths we want to pre render based on products
   const paths = products.map((product) => ({
-    params: { slug: product.slug }
+    params: { code: product.code }
   }));
 
   return { paths, fallback: false };
@@ -110,7 +102,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // get product data based on slug
-  const product = products.filter((single) => single.slug === params.slug)[0];
+  const product = products.filter((single) => single.code === params.code)[0];
 
   return { props: { product } };
 }
+
+export default ProductFullwidth;

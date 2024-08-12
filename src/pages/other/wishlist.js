@@ -68,11 +68,10 @@ const Wishlist = () => {
                       return (
                         <tr key={i}>
                           <td className="product-thumbnail">
-                            <Anchor path={`/shop/product-basic/${product.slug}`}>
+                            <Anchor path={`/shop/product-basic/${product.code}`}>
                                 <img
                                   src={
-                                    process.env.PUBLIC_URL +
-                                    product.thumbImage[0]
+                                    product.images[0].url
                                   }
                                   className="img-fluid"
                                   alt=""
@@ -80,7 +79,7 @@ const Wishlist = () => {
                             </Anchor>
                           </td>
                           <td className="product-name">
-                            <Anchor path={`/shop/product-basic/${product.slug}`}>
+                            <Anchor path={`/shop/product-basic/${product.code}`}>
                               {product.name}
                             </Anchor>
                             {product.selectedProductColor &&
@@ -112,7 +111,7 @@ const Wishlist = () => {
                             ) : product.variation &&
                               product.variation.length >= 1 ? (
                               <Anchor
-                                path={`/shop/product-basic/${product.slug}`}
+                                path={`/shop/product-basic/${product.code}`}
                                 className="lezada-button lezada-button--medium"
                               >
                                 Select option

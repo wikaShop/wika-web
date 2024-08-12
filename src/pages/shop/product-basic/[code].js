@@ -1,18 +1,23 @@
+import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import StickyBox from "react-sticky-box";
 import { LayoutTwo } from "../../../components/Layout";
 import { getDiscountPrice } from "../../../lib/product";
 import { BreadcrumbOne } from "../../../components/Breadcrumb";
 import {
-  ImageGallerySticky,
+  ImageGalleryBottomThumb,
   ProductDescription,
   ProductDescriptionTab
 } from "../../../components/ProductDetails";
 import Anchor from "../../../components/anchor";
 import products from "../../../data/products.json";
+import apiClient from "../../../axios/axios";
 
-const ProductSticky = ({ product }) => {
+const ProductBasic = ({ product }) => {
+  useEffect(() => {
+    document.querySelector("body").classList.remove("overflow-hidden");
+  });
+
   const { cartItems } = useSelector((state) => state.cart);
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const { compareItems } = useSelector((state) => state.compare);
@@ -60,26 +65,24 @@ const ProductSticky = ({ product }) => {
         <Container>
           <Row>
             <Col lg={6} className="space-mb-mobile-only--50">
-              {/* image gallery sticky */}
-              <ImageGallerySticky
+              {/* image gallery bottom thumb */}
+              <ImageGalleryBottomThumb
                 product={product}
                 wishlistItem={wishlistItem}
               />
             </Col>
 
             <Col lg={6}>
-              <StickyBox offsetTop={90} offsetBottom={20}>
-                {/* product description */}
-                <ProductDescription
-                  product={product}
-                  productPrice={productPrice}
-                  discountedPrice={discountedPrice}
-                  cartItems={cartItems}
-                  cartItem={cartItem}
-                  wishlistItem={wishlistItem}
-                  compareItem={compareItem}
-                />
-              </StickyBox>
+              {/* product description */}
+              <ProductDescription
+                product={product}
+                productPrice={productPrice}
+                discountedPrice={discountedPrice}
+                cartItems={cartItems}
+                cartItem={cartItem}
+                wishlistItem={wishlistItem}
+                compareItem={compareItem}
+              />
             </Col>
           </Row>
           <Row>
@@ -95,20 +98,29 @@ const ProductSticky = ({ product }) => {
 };
 
 
-export async function getStaticPaths() {
-  // get the paths we want to pre render based on products
-  const paths = products.map((product) => ({
-    params: { slug: product.slug }
-  }));
-
-  return { paths, fallback: false };
-}
+export default ProductBasic;
 
 export async function getStaticProps({ params }) {
-  // get product data based on slug
-  const product = products.filter((single) => single.slug === params.slug)[0];
+  // Reemplaza 'API_URL' con la URL real de tu API.
+  const response = await apiClient.get(`/product/${params.code}`);
+  console.log(response.data)
+  if (response.data.statusCode!==200) {
+    return {
+      notFound: true,  // Si no se encuentra el producto, devuelve un 404
+    };
+  }
 
-  return { props: { product } };
+  const product = await response.data.data;
+
+  return {
+    props: { product },  // Devuelve el producto como propiedad
+    revalidate: 10,  // (Opcional) Revalida cada 10 segundos
+  };
 }
 
-export default ProductSticky;
+export async function getStaticPaths() {
+  return {
+    paths: [],  // No defines caminos pre-renderizados
+    fallback: 'blocking',  // Las rutas no pre-renderizadas se generarán bajo demanda
+  };
+}

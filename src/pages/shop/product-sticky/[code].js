@@ -1,17 +1,18 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import StickyBox from "react-sticky-box";
 import { LayoutTwo } from "../../../components/Layout";
 import { getDiscountPrice } from "../../../lib/product";
 import { BreadcrumbOne } from "../../../components/Breadcrumb";
 import {
-  ImageGalleryRightThumb,
+  ImageGallerySticky,
   ProductDescription,
   ProductDescriptionTab
 } from "../../../components/ProductDetails";
 import Anchor from "../../../components/anchor";
 import products from "../../../data/products.json";
 
-const ProductFullwidthRightThumb = ({ product }) => {
+const ProductSticky = ({ product }) => {
   const { cartItems } = useSelector((state) => state.cart);
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const { compareItems } = useSelector((state) => state.compare);
@@ -56,27 +57,29 @@ const ProductFullwidthRightThumb = ({ product }) => {
 
       {/* product details */}
       <div className="product-details space-mt--r100 space-mb--r100">
-        <Container className="wide">
+        <Container>
           <Row>
             <Col lg={6} className="space-mb-mobile-only--50">
-              {/* image gallery left thumb */}
-              <ImageGalleryRightThumb
+              {/* image gallery sticky */}
+              <ImageGallerySticky
                 product={product}
                 wishlistItem={wishlistItem}
               />
             </Col>
 
             <Col lg={6}>
-              {/* product description */}
-              <ProductDescription
-                product={product}
-                productPrice={productPrice}
-                discountedPrice={discountedPrice}
-                cartItems={cartItems}
-                cartItem={cartItem}
-                wishlistItem={wishlistItem}
-                compareItem={compareItem}
-              />
+              <StickyBox offsetTop={90} offsetBottom={20}>
+                {/* product description */}
+                <ProductDescription
+                  product={product}
+                  productPrice={productPrice}
+                  discountedPrice={discountedPrice}
+                  cartItems={cartItems}
+                  cartItem={cartItem}
+                  wishlistItem={wishlistItem}
+                  compareItem={compareItem}
+                />
+              </StickyBox>
             </Col>
           </Row>
           <Row>
@@ -91,10 +94,11 @@ const ProductFullwidthRightThumb = ({ product }) => {
   );
 };
 
+
 export async function getStaticPaths() {
   // get the paths we want to pre render based on products
   const paths = products.map((product) => ({
-    params: { slug: product.slug }
+    params: { code: product.code }
   }));
 
   return { paths, fallback: false };
@@ -102,9 +106,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // get product data based on slug
-  const product = products.filter((single) => single.slug === params.slug)[0];
+  const product = products.filter((single) => single.code === params.code)[0];
 
   return { props: { product } };
 }
 
-export default ProductFullwidthRightThumb;
+export default ProductSticky;

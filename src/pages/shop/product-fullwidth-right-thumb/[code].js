@@ -4,14 +4,14 @@ import { LayoutTwo } from "../../../components/Layout";
 import { getDiscountPrice } from "../../../lib/product";
 import { BreadcrumbOne } from "../../../components/Breadcrumb";
 import {
-  ImageGalleryLeftThumb,
+  ImageGalleryRightThumb,
   ProductDescription,
   ProductDescriptionTab
 } from "../../../components/ProductDetails";
 import Anchor from "../../../components/anchor";
 import products from "../../../data/products.json";
 
-const ProductFullwidth = ({ product }) => {
+const ProductFullwidthRightThumb = ({ product }) => {
   const { cartItems } = useSelector((state) => state.cart);
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const { compareItems } = useSelector((state) => state.compare);
@@ -60,7 +60,7 @@ const ProductFullwidth = ({ product }) => {
           <Row>
             <Col lg={6} className="space-mb-mobile-only--50">
               {/* image gallery left thumb */}
-              <ImageGalleryLeftThumb
+              <ImageGalleryRightThumb
                 product={product}
                 wishlistItem={wishlistItem}
               />
@@ -94,7 +94,7 @@ const ProductFullwidth = ({ product }) => {
 export async function getStaticPaths() {
   // get the paths we want to pre render based on products
   const paths = products.map((product) => ({
-    params: { slug: product.slug }
+    params: { code: product.code }
   }));
 
   return { paths, fallback: false };
@@ -102,9 +102,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // get product data based on slug
-  const product = products.filter((single) => single.slug === params.slug)[0];
+  const product = products.filter((single) => single.code === params.code)[0];
 
   return { props: { product } };
 }
 
-export default ProductFullwidth;
+export default ProductFullwidthRightThumb;

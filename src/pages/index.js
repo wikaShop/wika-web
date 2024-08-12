@@ -13,18 +13,35 @@ import {useEffect, useState} from "react";
 import apiClient from "../axios/axios";
 
 const Perfumes = () => {
-    const { products } =  useSelector((state) => state.product);
-    const newProducts = getProducts(products, "perfumes", "new", 10);
-    const popularProducts = getProducts(products, "perfumes", "popular", 10);
-    const saleProducts = getProducts(products, "perfumes", "sale", 10);
+    //const { products } =  useSelector((state) => state.product);
+    const [products, setProducts] = useState([]);
+    const [newProducts, setNewProducts] = useState([]);
+    const [popularProducts, setPopularProducts] = useState([]);
+    const [saleProducts, setSaleProducts] = useState([]);
+    // const newProducts = getProducts(products, "perfumes", "new", 10);
+    // const popularProducts = getProducts(products, "perfumes", "popular", 10);
+    // const saleProducts = getProducts(products, "perfumes", "sale", 10);
 
-    const [data, setData] = useState(null);
 
     useEffect(() => {
         console.log("Cargo")
         apiClient.get('/product')
-            .then(response => setData(response.data))
-            .catch(error => console.error('Error fetching data:', error));
+            .then(response => {
+                console.log(response.data.data)
+                const finalProducts=response.data.data.map((product)=>({...product,category:[],discount:0,image:[]}))
+
+                setNewProducts(getProducts(finalProducts, false, "new", 10))
+                setPopularProducts(getProducts(finalProducts, false, "popular", 10));
+                setSaleProducts(getProducts(finalProducts, false, "sale", 10));
+
+                console.log(newProducts)
+
+                setProducts(finalProducts)
+            })
+            .catch(error => console.error('Error fetching data:', error))
+            .finally(()=> {
+
+            })
     }, []);
     return (
         <LayoutEight>

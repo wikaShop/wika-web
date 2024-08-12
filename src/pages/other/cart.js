@@ -68,11 +68,10 @@ const Cart = () => {
                       return (
                         <tr key={i}>
                           <td className="product-thumbnail">
-                            <Anchor path={`/shop/product-basic/${product.slug}`}>
+                            <Anchor path={`/shop/product-basic/${product.code}`}>
                                 <img
                                   src={
-                                    process.env.PUBLIC_URL +
-                                    product.thumbImage[0]
+                                    product.images[0].url
                                   }
                                   className="img-fluid"
                                   alt=""
@@ -80,7 +79,7 @@ const Cart = () => {
                             </Anchor>
                           </td>
                           <td className="product-name">
-                            <Anchor path={`/shop/product-basic/${product.slug}`}>
+                            <Anchor path={`/shop/product-basic/${product.code}`}>
                               {product.name}
                             </Anchor>
                             {product.selectedProductColor &&
