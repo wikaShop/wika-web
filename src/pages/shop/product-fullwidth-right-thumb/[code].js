@@ -9,7 +9,6 @@ import {
   ProductDescriptionTab
 } from "../../../components/ProductDetails";
 import Anchor from "../../../components/anchor";
-import products from "../../../data/products.json";
 
 const ProductFullwidthRightThumb = ({ product }) => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -93,9 +92,7 @@ const ProductFullwidthRightThumb = ({ product }) => {
 
 export async function getStaticPaths() {
   // get the paths we want to pre render based on products
-  const paths = products.map((product) => ({
-    params: { code: product.code }
-  }));
+  const paths =[]
 
   return { paths, fallback: false };
 }
@@ -104,7 +101,7 @@ export async function getStaticProps({ params }) {
   // get product data based on slug
   const product = products.filter((single) => single.code === params.code)[0];
 
-  return { props: { product } };
+  return { props: {  } };
 }
 
 export default ProductFullwidthRightThumb;
