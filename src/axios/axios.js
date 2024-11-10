@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Crear una instancia de Axios
 const apiClient = axios.create({
-    baseURL: 'http://localhost:3000', // Reemplaza con tu URL base
+    baseURL: 'https://api-mvw4nmcgga-uc.a.run.app', // Reemplaza con tu URL base
     headers: {
         'Content-Type': 'application/json',
         //'Authorization': 'Bearer YOUR_API_KEY', // Reemplaza con tu clave API
