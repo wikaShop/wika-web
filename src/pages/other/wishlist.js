@@ -7,7 +7,10 @@ import { BreadcrumbOne } from "../../components/Breadcrumb";
 import { IoIosClose, IoIosHeartEmpty } from "react-icons/io";
 import Anchor from "../../components/anchor";
 import { addToCart } from "../../store/slices/cart-slice";
-import { deleteFromWishlist, deleteAllFromWishlist } from "../../store/slices/wishlist-slice"
+import {
+  deleteFromWishlist,
+  deleteAllFromWishlist,
+} from "../../store/slices/wishlist-slice";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -27,9 +30,7 @@ const Wishlist = () => {
       >
         <ul className="breadcrumb__list">
           <li>
-            <Anchor path="/">
-              Home
-            </Anchor>
+            <Anchor path="/">Home</Anchor>
           </li>
 
           <li>Wishlist</li>
@@ -68,18 +69,20 @@ const Wishlist = () => {
                       return (
                         <tr key={i}>
                           <td className="product-thumbnail">
-                            <Anchor path={`/shop/product-basic/${product.code}`}>
-                                <img
-                                  src={
-                                    product.images[0].url
-                                  }
-                                  className="img-fluid"
-                                  alt=""
-                                />
+                            <Anchor
+                              path={`/shop/product-basic/${product.code}`}
+                            >
+                              <img
+                                src={product.images[0]?.url}
+                                className="img-fluid"
+                                alt=""
+                              />
                             </Anchor>
                           </td>
                           <td className="product-name">
-                            <Anchor path={`/shop/product-basic/${product.code}`}>
+                            <Anchor
+                              path={`/shop/product-basic/${product.code}`}
+                            >
                               {product.name}
                             </Anchor>
                             {product.selectedProductColor &&
@@ -188,8 +191,11 @@ const Wishlist = () => {
                   </div>
                   <div className="item-empty-area__text">
                     <p className="space-mb--30">No items found in wishlist</p>
-                    <Anchor path="/shop/left-sidebar" className="lezada-button lezada-button--medium">
-                        Shop Now
+                    <Anchor
+                      path="/shop/left-sidebar"
+                      className="lezada-button lezada-button--medium"
+                    >
+                      Shop Now
                     </Anchor>
                   </div>
                 </div>

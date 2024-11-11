@@ -24,9 +24,7 @@ const Compare = () => {
       >
         <ul className="breadcrumb__list">
           <li>
-            <Anchor path="/">
-              Home
-            </Anchor>
+            <Anchor path="/">Home</Anchor>
           </li>
 
           <li>Compare</li>
@@ -54,7 +52,9 @@ const Compare = () => {
                                     <div className="compare-remove">
                                       <button
                                         onClick={() =>
-                                          dispatch(deleteFromCompare(product.id))
+                                          dispatch(
+                                            deleteFromCompare(product.id)
+                                          )
                                         }
                                       >
                                         <IoIosTrash />
@@ -64,16 +64,16 @@ const Compare = () => {
                                       path={`/shop/product-basic/${product.code}`}
                                       className="image"
                                     >
-                                        <img
-                                          className="img-fluid"
-                                          src={
-                                            product.images[0].url
-                                          }
-                                          alt=""
-                                        />
+                                      <img
+                                        className="img-fluid"
+                                        src={product.images[0]?.url}
+                                        alt=""
+                                      />
                                     </Anchor>
                                     <div className="product-title">
-                                      <Anchor path={`/shop/product-basic/${product.code}`}>
+                                      <Anchor
+                                        path={`/shop/product-basic/${product.code}`}
+                                      >
                                         {product.name}
                                       </Anchor>
                                     </div>
@@ -207,7 +207,7 @@ const Compare = () => {
                           path="/shop/left-sidebar"
                           className="lezada-button lezada-button--medium"
                         >
-                            Add Items
+                          Add Items
                         </Anchor>
                       </div>
                     </div>

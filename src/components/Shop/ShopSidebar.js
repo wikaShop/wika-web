@@ -1,21 +1,35 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import {
-  getIndividualCategories,
+  getCategories,
+  getDiscountPrice,
   getIndividualColors,
   getIndividualTags,
-  setActiveSort,
   getProducts,
-  getDiscountPrice
+  setActiveSort,
 } from "../../lib/product";
 import { ProductRating } from "../Product";
 import Anchor from "../anchor";
 
 const ShopSidebar = ({ products, getSortParams }) => {
-  const categories = getIndividualCategories([products]);
+  const [categories, setCategories] = useState([]);
+
   const colors = getIndividualColors(products);
   const tags = getIndividualTags(products);
   const popularProducts = getProducts(products, "decor", "popular", 3);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const result = await getCategories();
+        setCategories(result);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   return (
     <div className="shop-sidebar">
@@ -58,7 +72,7 @@ const ShopSidebar = ({ products, getSortParams }) => {
                       setActiveSort(e);
                     }}
                   >
-                    {category}
+                    {category.name}
                   </button>
                 </li>
               );
@@ -124,19 +138,17 @@ const ShopSidebar = ({ products, getSortParams }) => {
                         path={`/shop/product-basic/${product.code}`}
                         className="image-wrap"
                       >
-                          <img
-                            src={product.images[0].url}
-                            className="img-fluid"
-                            alt={product.name}
-                          />
+                        <img
+                          src={product.images[0]?.url}
+                          className="img-fluid"
+                          alt={product.name}
+                        />
                       </Anchor>
                     </div>
                     <div className="single-widget-product__content">
                       <div className="single-widget-product__content__top">
                         <h3 className="product-title space-mb--10">
-                          <Anchor
-                            path={`/shop/product-basic/${product.code}`}
-                          >
+                          <Anchor path={`/shop/product-basic/${product.code}`}>
                             {product.name}
                           </Anchor>
                         </h3>

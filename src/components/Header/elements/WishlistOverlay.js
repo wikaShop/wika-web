@@ -6,10 +6,7 @@ import Anchor from "../../anchor";
 import { getDiscountPrice } from "../../../lib/product";
 import { deleteFromWishlist } from "../../../store/slices/wishlist-slice";
 
-const WishlistOverlay = ({
-  activeStatus,
-  getActiveStatus,
-}) => {
+const WishlistOverlay = ({ activeStatus, getActiveStatus }) => {
   const dispatch = useDispatch();
   const { wishlistItems } = useSelector((state) => state.wishlist);
 
@@ -58,18 +55,18 @@ const WishlistOverlay = ({
                         </span>
                         <div className="image">
                           <Anchor path={`/shop/product-basic/${product.code}`}>
-                              <img
-                                src={
-                                  product.images[0].url
-                                }
-                                className="img-fluid"
-                                alt=""
-                              />
+                            <img
+                              src={product.images[0]?.url}
+                              className="img-fluid"
+                              alt=""
+                            />
                           </Anchor>
                         </div>
                         <div className="content">
                           <h5>
-                            <Anchor path={`/shop/product-basic/${product.code}`}>
+                            <Anchor
+                              path={`/shop/product-basic/${product.code}`}
+                            >
                               {product.name}
                             </Anchor>
                           </h5>
@@ -86,9 +83,7 @@ const WishlistOverlay = ({
               </div>
               {/*=======  wishlist buttons  =======*/}
               <div className="wishlist-buttons">
-                <Anchor path="/other/wishlist">
-                  view wishlist
-                </Anchor>
+                <Anchor path="/other/wishlist">view wishlist</Anchor>
               </div>
             </div>
           ) : (

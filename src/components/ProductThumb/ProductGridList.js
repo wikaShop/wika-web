@@ -5,8 +5,14 @@ import { IoIosHeartEmpty, IoIosShuffle, IoIosSearch } from "react-icons/io";
 import { Tooltip } from "react-tippy";
 import clsx from "clsx";
 import { addToCart } from "../../store/slices/cart-slice";
-import { addToWishlist, deleteFromWishlist } from "../../store/slices/wishlist-slice";
-import { addToCompare, deleteFromCompare } from "../../store/slices/compare-slice";
+import {
+  addToWishlist,
+  deleteFromWishlist,
+} from "../../store/slices/wishlist-slice";
+import {
+  addToCompare,
+  deleteFromCompare,
+} from "../../store/slices/compare-slice";
 import ProductModal from "./ProductModal";
 import Anchor from "../anchor";
 
@@ -28,21 +34,24 @@ const ProductGridList = ({
         <div className="product-grid">
           {/*=======  single product image  =======*/}
           <div className="product-grid__image">
-            <Anchor path={`/shop/product-basic/${product.code}`} className="image-wrap">
+            <Anchor
+              path={`/shop/product-basic/${product.code}`}
+              className="image-wrap"
+            >
+              <img
+                src={product.images[0]?.url}
+                className="img-fluid"
+                alt={product.name}
+              />
+              {product.images.length > 1 ? (
                 <img
-                  src={product.images[0].url}
+                  src={product.images[1].url}
                   className="img-fluid"
                   alt={product.name}
                 />
-                {product.images.length > 1 ? (
-                  <img
-                    src={ product.images[1].url}
-                    className="img-fluid"
-                    alt={product.name}
-                  />
-                ) : (
-                  ""
-                )}
+              ) : (
+                ""
+              )}
             </Anchor>
             <div className="product-grid__floating-badges">
               {product.discount && product.discount > 0 ? (
@@ -174,21 +183,24 @@ const ProductGridList = ({
         <div className="product-list">
           {/*=======  single product image  =======*/}
           <div className="product-list__image">
-            <Anchor path={`/shop/product-basic/${product.code}`} className="image-wrap">
+            <Anchor
+              path={`/shop/product-basic/${product.code}`}
+              className="image-wrap"
+            >
+              <img
+                src={product.images[0]?.url}
+                className="img-fluid"
+                alt={product.name}
+              />
+              {product.images.length > 1 ? (
                 <img
-                  src={product.images[0].url}
+                  src={product.images[1].url}
                   className="img-fluid"
                   alt={product.name}
                 />
-                {product.images.length > 1 ? (
-                  <img
-                    src={product.images[1].url}
-                    className="img-fluid"
-                    alt={product.name}
-                  />
-                ) : (
-                  ""
-                )}
+              ) : (
+                ""
+              )}
             </Anchor>
             <div className="product-list__floating-badges">
               {product.discount && product.discount > 0 ? (
@@ -309,7 +321,7 @@ const ProductGridList = ({
                   path={`/shop/product-basic/${product.code}`}
                   className="lezada-button lezada-button--medium"
                 >
-                    Select Option
+                  Select Option
                 </Anchor>
               ) : product.stock && product.stock > 0 ? (
                 <button

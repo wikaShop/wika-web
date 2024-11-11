@@ -4,7 +4,7 @@ import { LayoutTwo } from "../../components/Layout";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
 import {
   SectionTitleOne,
-  SectionTitleTwo
+  SectionTitleTwo,
 } from "../../components/SectionTitle";
 import Anchor from "../../components/anchor";
 
@@ -18,9 +18,7 @@ const Contact = () => {
       >
         <ul className="breadcrumb__list">
           <li>
-            <Anchor path="/">
-              Home
-            </Anchor>
+            <Anchor path="/">Home</Anchor>
           </li>
 
           <li>Contact</li>
@@ -46,7 +44,7 @@ const Contact = () => {
                   <div className="icon-box__content">
                     <h3 className="title">ADDRESS</h3>
                     <p className="content">
-                      1800 Abbot Kinney Blvd. Unit D &amp; E Venice
+                      2816 Fan Palm, Davenport, FL 33897
                     </p>
                   </div>
                 </div>
@@ -59,8 +57,10 @@ const Contact = () => {
                   <div className="icon-box__content">
                     <h3 className="title">CONTACT</h3>
                     <p className="content">
-                      Mobile: (+88) – 1990 – 6886{" "}
-                      <span>Hotline: 1800 – 1102</span>
+                      Mobile: (863 845 3956){" "}
+                      <span style={{ paddingLeft: "58px" }}>
+                        (786 477 3348)
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ const Contact = () => {
                     <IoIosMail />
                   </div>
                   <div className="icon-box__content">
-                    <p className="content"> Mail: contact@lezadastore.com </p>
+                    <p className="content"> Mail: wikabrand@yahoo.com </p>
                   </div>
                 </div>
               </Col>

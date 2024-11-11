@@ -4,8 +4,14 @@ import { Tooltip } from "react-tippy";
 import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import { addToCart } from "../../store/slices/cart-slice";
-import { addToWishlist, deleteFromWishlist } from "../../store/slices/wishlist-slice";
-import { addToCompare, deleteFromCompare } from "../../store/slices/compare-slice";
+import {
+  addToWishlist,
+  deleteFromWishlist,
+} from "../../store/slices/wishlist-slice";
+import {
+  addToCompare,
+  deleteFromCompare,
+} from "../../store/slices/compare-slice";
 import ProductModal from "./ProductModal";
 import Anchor from "../anchor";
 
@@ -16,7 +22,7 @@ const ProductGridThree = ({
   cartItem,
   wishlistItem,
   compareItem,
-  bottomSpace
+  bottomSpace,
 }) => {
   const [modalShow, setModalShow] = useState(false);
   const dispatch = useDispatch();
@@ -30,20 +36,20 @@ const ProductGridThree = ({
             path={`/shop/product-basic/${product.code}`}
             className="image-wrap"
           >
+            <img
+              src={product.images[0]?.url}
+              className="img-fluid"
+              alt={product.name}
+            />
+            {product.images.length > 1 ? (
               <img
-                src={product.images[0].url}
+                src={product.images[1].url}
                 className="img-fluid"
                 alt={product.name}
               />
-              {product.images.length > 1 ? (
-                <img
-                  src={product.images[1].url}
-                  className="img-fluid"
-                  alt={product.name}
-                />
-              ) : (
-                ""
-              )}
+            ) : (
+              ""
+            )}
           </Anchor>
           <div className="product-grid__floating-badges">
             {product.discount && product.discount > 0 ? (

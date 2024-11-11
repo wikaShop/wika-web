@@ -1,8 +1,11 @@
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import DOMPurify from "dompurify";
 
 const ProductDescriptionTab = ({ product }) => {
+  const cleanHTML = DOMPurify.sanitize(product.description);
+
   return (
     <div className="product-description-tab space-pt--r100 space-mt--r100 border-top--grey">
       <Tab.Container defaultActiveKey="description">
@@ -27,7 +30,7 @@ const ProductDescriptionTab = ({ product }) => {
         <Tab.Content>
           <Tab.Pane eventKey="description">
             <div className="product-description-tab__details">
-              {product.fullDescription}
+              <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
             </div>
           </Tab.Pane>
           <Tab.Pane eventKey="additionalInfo">

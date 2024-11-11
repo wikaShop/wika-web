@@ -63,18 +63,22 @@
 @import "components/overlay-menu";
 
 @font-face {
-  font-family: 'Eyesome Script';
-  src: url('../../../public/assets/fonts/eyesome-duo-script.otf') format('truetype'); /* Ajusta la ruta según la ubicación de la fuente */
+  font-family: "Eyesome Script";
+  src: url("../../../public/assets/fonts/eyesome-duo-script.otf")
+    format("truetype"); /* Ajusta la ruta según la ubicación de la fuente */
   font-weight: normal;
   font-style: normal;
 }
 
 p.wika-font {
-  font-family: 'Eyesome Script', cursive;
+  font-family: "Eyesome Script", cursive;
+  font-size: 7em;
+  padding-top: 60px;
+  padding-bottom: 6px;
 }
 
 .golden-text {
-  background: linear-gradient(45deg, #FFD700, #FFAA00, #FFD700);
+  background: linear-gradient(45deg, #ffd700, #ffaa00, #ffd700);
   -webkit-background-clip: text;
   color: transparent;
   font-weight: bold;
@@ -82,12 +86,11 @@ p.wika-font {
 }
 
 .golden-text-shadow {
-  background: linear-gradient(45deg, #FFD700, #FFAA00, #FFD700);
+  background: linear-gradient(45deg, #ffd700, #ffaa00, #ffd700);
   -webkit-background-clip: text;
   color: transparent;
   font-weight: bold;
   font-size: 2em;
   text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.8),
-  1px 2px 4px rgba(218, 165, 32, 0.8),
-  2px 4px 6px rgba(184, 134, 11, 0.8);
+    1px 2px 4px rgba(218, 165, 32, 0.8), 2px 4px 6px rgba(184, 134, 11, 0.8);
 }

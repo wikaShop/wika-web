@@ -9,7 +9,7 @@ const ProductWidget = ({
   discountedPrice,
   productPrice,
   cartItem,
-  sliderClass
+  sliderClass,
 }) => {
   const dispatch = useDispatch();
   return (
@@ -20,11 +20,11 @@ const ProductWidget = ({
             path={`/shop/product-basic/${product.code}`}
             className="image-wrap"
           >
-              <img
-                src={product.images[0].url}
-                className="img-fluid"
-                alt={product.name}
-              />
+            <img
+              src={product.images[0]?.url}
+              className="img-fluid"
+              alt={product.name}
+            />
           </Anchor>
         </div>
         <div className="single-widget-product__content">
