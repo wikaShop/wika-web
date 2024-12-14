@@ -82,7 +82,6 @@ p.wika-font {
   -webkit-background-clip: text;
   color: transparent;
   font-weight: bold;
-  font-size: 2em;
 }
 
 .golden-text-shadow {
@@ -93,4 +92,23 @@ p.wika-font {
   font-size: 2em;
   text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.8),
     1px 2px 4px rgba(218, 165, 32, 0.8), 2px 4px 6px rgba(184, 134, 11, 0.8);
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 765px) {
+  p.wika-font {
+    font-size: 4em; /* Tamaño reducido en pantallas pequeñas */
+  }
+  .golden-text-shadow {
+    font-size: 1.5em; /* Tamaño reducido en pantallas pequeñas */
+  }
+}
+@media (max-width: 576px) {
+  p.wika-font {
+    padding-top: 5px;
+    font-size: 2em; /* Tamaño reducido en pantallas pequeñas */
+  }
+  .golden-text-shadow {
+    font-size: 1em; /* Tamaño reducido en pantallas pequeñas */
+  }
 }

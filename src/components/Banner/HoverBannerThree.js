@@ -18,9 +18,9 @@ const HoverBannerThree = () => {
                 />
                 <span className="banner-content banner-content--product-type banner-content--product-type--bigtitle">
                   <span className="name">
-                    Perfumes <span>for women</span>
+                    Ponchos <span>for women</span>
                   </span>
-                  <span className="price">$19.00</span>
+                  <span className="price">$190.00</span>
                 </span>
             </Anchor>
           </div>

@@ -31,18 +31,10 @@ const MobileMenu = ({ activeStatus, getActiveStatus }) => {
                 <span className="title">Choose Language </span>
                 <select>
                   <option value="en">English</option>
-                  <option value="fn">French</option>
-                  <option value="de">Germany</option>
+                  <option value="es">Spanish</option>
                 </select>
               </div>
-              <div className="lang-curr-style">
-                <span className="title">Choose Currency</span>
-                <select>
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
-                </select>
-              </div>
+
             </div>
 
             {/* mobile widgets */}

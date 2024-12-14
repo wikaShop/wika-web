@@ -7,7 +7,6 @@ import {
   CategoryGridTwo
 } from "../../components/Category";
 import Anchor from "../../components/anchor";
-import categoryData from "../../data/categories/category-one.json";
 
 const ProductCategories = () => {
   return (
@@ -41,7 +40,7 @@ const ProductCategories = () => {
           subtitle="This is where to find your satisfactory products"
         />
         <CategorySlider
-          categoryData={categoryData}
+          categoryData={[]}
           spaceBottomClass="space-mb--r100"
         />
 

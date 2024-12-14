@@ -4,8 +4,6 @@ import { Work_Sans } from "next/font/google";
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
 import { wrapper } from "../store";
-import { setProducts } from "../store/slices/product-slice";
-import products from "../data/products.json";
 import Preloader from "../components/Preloader";
 
 import "yet-another-react-lightbox/styles.css";
@@ -23,9 +21,6 @@ const workSans = Work_Sans({
 
 const MyApp = ({Component, ...rest}) => {
   const {store, props} = wrapper.useWrappedStore(rest);
-  useEffect(() => {
-    store.dispatch(setProducts(products));
-  }, []);
 
   return (
     <Fragment>

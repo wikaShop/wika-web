@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import Paginator from "react-hooks-paginator";
+import ReactPaginate from 'react-paginate';
 import { SlideDown } from "react-slidedown";
 import { LayoutTwo } from "../../components/Layout";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
@@ -36,6 +36,11 @@ const NoSidebar = () => {
   const getFilterSortParams = (sortType, sortValue) => {
     setFilterSortType(sortType);
     setFilterSortValue(sortValue);
+  };
+
+  const handlePageChange = ({ selected }) => {
+    const offset = selected * pageLimit;
+    setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
   };
 
   useEffect(() => {
@@ -93,16 +98,17 @@ const NoSidebar = () => {
 
                 {/* shop product pagination */}
                 <div className="pro-pagination-style">
-                  <Paginator
-                    totalRecords={sortedProducts.length}
-                    pageLimit={pageLimit}
-                    pageNeighbours={2}
-                    setOffset={setOffset}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    pageContainerClass="mb-0 mt-0"
-                    pagePrevText="«"
-                    pageNextText="»"
+                <ReactPaginate
+                    previousLabel={"«"}
+                    nextLabel={"»"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={Math.ceil(sortedProducts.length / pageLimit)}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={3}
+                    onPageChange={handlePageChange}
+                    containerClassName={"pagination"}
+                    activeClassName={"active"}
                   />
                 </div>
               </Col>

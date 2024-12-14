@@ -43,10 +43,7 @@ const About = () => {
                     Clever &amp; unique ideas
                   </h2>
                   <p className="title-text">
-                    Lorem ipsum dolor sit amet, consectetur cing elit. Suspe
-                    ndisse suscipit sagittis leo sit met condimentum estibulum
-                    is Suspe ndisse suscipit sagittis leo sit met condimentum
-                    estibulorem ipsum dolor sit amet, consectetur cing elit.
+                  En Wika, nos apasiona la creación y promoción de productos artesanales únicos y de alta calidad. Cada uno de nuestros artículos, desde ponchos tejidos a mano hasta tablas de cortar de madera fina y sales de baño aromáticas, es cuidadosamente elaborado para ofrecerte una experiencia auténtica y especial. Trabajamos con artesanos locales y seleccionamos materiales naturales para que puedas disfrutar de productos que no solo son funcionales, sino también reflejan la esencia de las tradiciones y el arte manual.
                   </p>
                 </div>
               </Col>

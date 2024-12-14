@@ -4,13 +4,20 @@
     "subtitle": "NEW ARRIVALS",
     "title": "Spring Collection",
     "url": "/shop/left-sidebar",
-    "bgImage": "/assets/images/hero-slider/hero-slider-four/1.png"
+    "bgImage": "/assets/images/hero-slider/main-images/1.png"
   },
   {
     "id": "2",
-    "subtitle": "SKIN CARE",
-    "title": "New Products",
+    "subtitle": "NEW ARRIVALS",
+    "title": "Summer Collection",
     "url": "/shop/left-sidebar",
-    "bgImage": "/assets/images/hero-slider/hero-slider-four/2.png"
+    "bgImage": "/assets/images/hero-slider/main-images/2.png"
+  },
+  {
+    "id": "3",
+    "subtitle": "SKIN CARE",
+    "title": "Winter Collection",
+    "url": "/shop/left-sidebar",
+    "bgImage": "/assets/images/hero-slider/main-images/3.png"
   }
 ]

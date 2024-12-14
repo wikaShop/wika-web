@@ -10,7 +10,6 @@ import {
   ProductDescriptionTab
 } from "../../../components/ProductDetails";
 import Anchor from "../../../components/anchor";
-import products from "../../../data/products.json";
 import apiClient from "../../../axios/axios";
 
 const ProductBasic = ({ product }) => {

@@ -1,7 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Anchor from "../../anchor"
+import apiClient from "../../../axios/axios";
 
 const MobileMenuNav = ({ getActiveStatus }) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    apiClient
+      .get("/category")
+      .then((response) => {
+        console.log("category", response.data.data);
+
+        setCategories(response.data.data);
+      })
+      .catch((error) => console.error("Error fetching data:", error))
+      .finally(() => {});
+  }, []);
+
   useEffect(() => {
     const offCanvasNav = document.querySelector(
       "#offcanvas-mobile-menu__navigation"
@@ -43,502 +58,44 @@ const MobileMenuNav = ({ getActiveStatus }) => {
       id="offcanvas-mobile-menu__navigation"
     >
       <ul>
-        <li className="menu-item-has-children"> 
+        <li className="menu-item"> 
           <Anchor path="/">
             Home
           </Anchor>
-          <ul className="mobile-sub-menu">
-            <li className="menu-item-has-children"> 
-              <Anchor path="/">
-                Home Group One
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/home/decor">
-                    Decor
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/creative">
-                    Creative
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/perfumes">
-                    Perfumes
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/trending">
-                    Trending
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children"> 
-              <Anchor path={process.env.PUBLIC_URL + "/"}>
-                Home Group Two
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/home/essentials">
-                    Essentials
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/accessories">
-                    Accessories
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/lookbook">
-                    Lookbook
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/furniture">
-                    Furniture
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children"> 
-              <Anchor path="/">
-                Home Group Three
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/home/smart-design">
-                    Smart Design
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/collection">
-                    Collection
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/jewelry">
-                    Jewelry
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/cosmetics">
-                    Cosmetics
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children"> 
-              <Anchor path="/">
-                Home Group Four
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/home/swimsuit">
-                    Swimsuit
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/special">
-                    Special
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/home/concept">
-                    Concept
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-          </ul>
         </li>
 
         <li className="menu-item-has-children">
           <Anchor path="/shop/left-sidebar">
             Shop
           </Anchor>
+          
           <ul className="mobile-sub-menu">
+          {categories.map((category)=>
+            (<>
             <li className="menu-item-has-children">
               <Anchor path="/shop/left-sidebar">
-                Group One
+                {category.name}
               </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/shop/left-sidebar">
-                    Left Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/shop/right-sidebar">
-                    Right Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/shop/no-sidebar">
-                    No Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/shop/fullwidth-no-space">
-                    Full Width No Space
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/shop/fullwidth-no-sidebar">
-                    Full Width No Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/shop/fullwidth-left-sidebar">
-                    Full Width Left Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/shop/fullwidth-right-sidebar">
-                    Full Width Right Sidebar
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children">
-              <Anchor path="/shop/left-sidebar">
-                Group Two
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/shop/product-basic/lorem-ipsum-decor-one">
-                    Basic
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/shop/product-fullwidth/lorem-ipsum-decor-one">
-                    Full Width
-                  </Anchor>
-                </li>
-
-                <li>
-                  <Anchor path="/shop/product-fullwidth-right-thumb/lorem-ipsum-decor-one">
-                    Full Width Right Thumb
-                  </Anchor>
-                </li>
-
-                <li>
-                  <Anchor path="/shop/product-sticky/lorem-ipsum-decor-one">
-                    Sticky Details
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/other/cart">
-                    Shopping Cart
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/other/wishlist">
-                    Wishlist
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/other/compare">
-                    Compare
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children">
-              <Anchor path="/shop/left-sidebar">
-                Group Three
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/other/checkout">
-                    Checkout
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/other/order-tracking">
-                    Order Tracking
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/other/my-account">
-                    My Account
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/other/login-register">
-                    Login Register
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
+              </li>
+            </>)
+          )}
           </ul>
         </li>
 
-        <li className="menu-item-has-children"> 
+        <li className="menu-item"> 
           <Anchor path="/">
-            Elements
+            About us
           </Anchor>
-          <ul className="mobile-sub-menu">
-            <li className="menu-item-has-children"> 
-              <Anchor path="/">
-                Group One
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/element/product-categories">
-                    Product Categories
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/product-sliders">
-                    Product Sliders
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/product-tabs">
-                    Product Tabs
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/product-widgets">
-                    Product Widget
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/recent-products">
-                    Recent Products
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children"> 
-              <Anchor path="/">
-                Group Two
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/element/sale-products">
-                    Sale Products
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/featured-products">
-                    Featured products
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/top-rated-products">
-                    Top Rated products
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/best-selling-products">
-                    Best Selling
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/product-attributes">
-                    Product Attributes
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children"> 
-              <Anchor path="/">
-                Group Three
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/element/blog-posts">
-                    Blog Posts
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/mailchimp-forms">
-                    Mailchimp Form
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/icon-boxes">
-                    Icon Box
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/team-members">
-                    Team Member
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/faqs">
-                    FAQs / Toggles
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children"> 
-              <Anchor path="/">
-                Group Four
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/element/countdown-timers">
-                    Countdown Timer
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/buttons">
-                    Buttons
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/testimonials">
-                    Testimonials
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/element/google-maps">
-                    Google Maps
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-          </ul>
+
         </li>
 
-        <li className="menu-item-has-children"> 
+        <li className="menu-item"> 
           <Anchor path="/">
-            Pages
+            Contact
           </Anchor>
-          <ul className="mobile-sub-menu">
-            <li>
-              <Anchor path="/other/about">
-                About Us
-              </Anchor>
-            </li>
-            <li>
-              <Anchor path="/other/about-two">
-                About Us Two
-              </Anchor>
-            </li>
-            <li>
-              <Anchor path="/other/contact">
-                Contact Us
-              </Anchor>
-            </li>
-            <li>
-              <Anchor path="/other/faq">
-                F.A.Q
-              </Anchor>
-            </li>
-            <li>
-              <Anchor path="/other/coming-soon">
-                Coming Soon
-              </Anchor>
-            </li>
-            <li>
-              <Anchor path="/other/not-found">
-                Not Found
-              </Anchor>
-            </li>
-          </ul>
+
         </li>
 
-        <li className="menu-item-has-children">
-          <Anchor path="/blog/standard-left-sidebar">
-            Blog
-          </Anchor>
-          <ul className="mobile-sub-menu">
-            <li className="menu-item-has-children">
-              <Anchor path="/blog/standard-left-sidebar">
-                Standard Layout
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/blog/standard-left-sidebar">
-                    Left Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/blog/standard-right-sidebar">
-                    Right Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/blog/standard-fullwidth">
-                    Full Width
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children">
-              <Anchor path="/blog/grid-left-sidebar">
-                Grid Layout
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/blog/grid-left-sidebar">
-                    Left Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/blog/grid-right-sidebar">
-                    Right Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/blog/grid-fullwidth">
-                    Full Width
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children">
-              <Anchor path="/blog/list-left-sidebar">
-                List Layout
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/blog/list-left-sidebar">
-                    Left Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/blog/list-right-sidebar">
-                    Right Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/blog/list-fullwidth">
-                    Full Width
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children">
-              <Anchor path="/blog/post-left-sidebar">
-                Single Post Layout
-              </Anchor>
-              <ul className="mobile-sub-menu">
-                <li>
-                  <Anchor path="/blog/post-left-sidebar">
-                    Left Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/blog/post-right-sidebar">
-                    Right Sidebar
-                  </Anchor>
-                </li>
-                <li>
-                  <Anchor path="/blog/post-fullwidth">
-                    Full Width
-                  </Anchor>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
       </ul>
     </nav>
   );

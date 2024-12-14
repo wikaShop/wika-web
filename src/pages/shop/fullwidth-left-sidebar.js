@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import Paginator from "react-hooks-paginator";
 import { SlideDown } from "react-slidedown";
 import { LayoutTwo } from "../../components/Layout";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
@@ -13,6 +12,8 @@ import {
   ShopSidebar,
   ShopProducts
 } from "../../components/Shop";
+import ReactPaginate from 'react-paginate';
+
 
 const FullwidthLeftSidebar = () => {
   const [layout, setLayout] = useState("grid four-column");
@@ -43,6 +44,11 @@ const FullwidthLeftSidebar = () => {
     setFilterSortValue(sortValue);
   };
 
+  const handlePageChange = ({ selected }) => {
+    const offset = selected * pageLimit;
+    setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
+  };
+  
   useEffect(() => {
     let sortedProducts = getSortedProducts(products, sortType, sortValue);
     const filterSortedProducts = getSortedProducts(
@@ -110,16 +116,17 @@ const FullwidthLeftSidebar = () => {
 
                 {/* shop product pagination */}
                 <div className="pro-pagination-style">
-                  <Paginator
-                    totalRecords={sortedProducts.length}
-                    pageLimit={pageLimit}
-                    pageNeighbours={2}
-                    setOffset={setOffset}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    pageContainerClass="mb-0 mt-0"
-                    pagePrevText="«"
-                    pageNextText="»"
+                  <ReactPaginate
+                    previousLabel={"«"}
+                    nextLabel={"»"}
+                    breakLabel={"..."}
+                    pageCount={Math.ceil(sortedProducts.length / pageLimit)} // Total de páginas basado en el total de productos
+                    onPageChange={handlePageChange}
+                    forcePage={currentPage - 1} // React Paginate requiere el índice de página basado en 0
+                    pageRangeDisplayed={5} // Número de páginas visibles (puedes ajustarlo)
+                    marginPagesDisplayed={2} // Páginas a mostrar al inicio y al final
+                    containerClassName={"pagination"} // Clase CSS para el contenedor
+                    activeClassName={"active"} // Clase CSS para la página activa
                   />
                 </div>
               </Col>

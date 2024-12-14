@@ -12,6 +12,7 @@ import { getDiscountPrice, cartItemStock } from "../../lib/product";
 import { LayoutTwo } from "../../components/Layout";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
 import Anchor from "../../components/anchor";
+import apiClient from "../../axios/axios";
 
 const Cart = () => {
   const [quantityCount] = useState(1);
@@ -20,6 +21,15 @@ const Cart = () => {
   const { cartItems } = useSelector((state) => state.cart);
 
   let cartTotalPrice = 0;
+
+  const stripeCheckOut=async ()=>{
+    console.log(cartItems)
+    const products=cartItems.map((item)=>({name:item.name,quantity:item.quantity,image:item.images[0].url,price:item.price}))
+    console.log("products",products)
+    const result=await apiClient.post("/payment/create-checkout-session",products)
+    console.log(result)
+    //location.href=result.data
+  }
 
   useEffect(() => {
     document.querySelector("body").classList.remove("overflow-hidden");
@@ -219,8 +229,9 @@ const Cart = () => {
                   </table>
                   <div className="cart-calculation-button text-center">
                     <Anchor
-                      path="/other/checkout"
+                      path="#"
                       className="lezada-button lezada-button--medium"
+                      onClick={()=>{stripeCheckOut()}}
                     >
                       proceed to checkout
                     </Anchor>
