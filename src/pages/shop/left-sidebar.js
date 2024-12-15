@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 import { SlideDown } from "react-slidedown";
 import { LayoutTwo } from "../../components/Layout";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
@@ -11,8 +11,7 @@ import {
   ShopProducts,
   ShopSidebar,
 } from "../../components/Shop";
-import { getSortedProducts } from "../../lib/product";
-import apiClient from "../../axios/axios";
+import { fetchProducts, getSortedProducts } from "../../lib/product";
 
 const LeftSidebar = () => {
   const [layout, setLayout] = useState("grid four-column");
@@ -48,35 +47,35 @@ const LeftSidebar = () => {
     const offset = selected * pageLimit;
     setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
   };
-
+  // Primer useEffect: Llamado a la API
   useEffect(() => {
-    console.log("Cargo");
-    apiClient
-      .get("/product")
-      .then((response) => {
-        console.log(response.data.data);
-        const finalProducts = response.data.data.map((product) => ({
-          ...product,
-          category: [],
-          discount: 0,
-          image: [],
-        }));
+    const loadProducts = async () => {
+      try {
+        const finalProducts = await fetchProducts();
         setProducts(finalProducts);
-      })
-      .catch((error) => console.error("Error fetching data:", error))
-      .finally(() => {});
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    loadProducts();
   }, []);
 
+  // Segundo useEffect: Ordenamiento y filtrado
   useEffect(() => {
-    let sortedProducts = getSortedProducts(products, sortType, sortValue);
-    sortedProducts = getSortedProducts(
-      sortedProducts,
-      filterSortType,
-      filterSortValue
-    );
-    setSortedProducts(sortedProducts);
-    setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
-  }, [offset, products, sortType, sortValue, filterSortType, filterSortValue]);
+    let sorted = getSortedProducts(products, sortType, sortValue);
+    sorted = getSortedProducts(sorted, filterSortType, filterSortValue);
+    setSortedProducts(sorted);
+    setCurrentData(sorted.slice(offset, offset + pageLimit));
+  }, [
+    products,
+    sortType,
+    sortValue,
+    filterSortType,
+    filterSortValue,
+    offset,
+    pageLimit,
+  ]);
 
   return (
     <LayoutTwo>
@@ -130,7 +129,7 @@ const LeftSidebar = () => {
 
                 {/* shop product pagination */}
                 <div className="pro-pagination-style">
-                <ReactPaginate
+                  <ReactPaginate
                     previousLabel={"«"}
                     nextLabel={"»"}
                     breakLabel={"..."}

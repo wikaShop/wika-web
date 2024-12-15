@@ -107,12 +107,7 @@ const CartOverlay = ({ activeStatus, getActiveStatus }) => {
               {/*=======  cart buttons  =======*/}
               <div className="cart-buttons">
                 <Anchor path="/other/cart">view cart</Anchor>
-                <Anchor path="/other/checkout">checkout</Anchor>
               </div>
-              {/*=======  free shipping text  =======*/}
-              <p className="free-shipping-text">
-                Free Shipping on All Orders Over $100!
-              </p>
             </div>
           ) : (
             "No items found in cart"

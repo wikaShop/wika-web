@@ -8,7 +8,11 @@ import {
   deleteFromCart,
   deleteAllFromCart,
 } from "../../store/slices/cart-slice";
-import { getDiscountPrice, cartItemStock } from "../../lib/product";
+import {
+  getDiscountPrice,
+  cartItemStock,
+  createStripeCheckoutSession,
+} from "../../lib/product";
 import { LayoutTwo } from "../../components/Layout";
 import { BreadcrumbOne } from "../../components/Breadcrumb";
 import Anchor from "../../components/anchor";
@@ -22,14 +26,24 @@ const Cart = () => {
 
   let cartTotalPrice = 0;
 
-  const stripeCheckOut=async ()=>{
-    console.log(cartItems)
-    const products=cartItems.map((item)=>({name:item.name,quantity:item.quantity,image:item.images[0].url,price:item.price}))
-    console.log("products",products)
-    const result=await apiClient.post("/payment/create-checkout-session",products)
-    console.log(result)
-    //location.href=result.data
-  }
+  const stripeCheckOut = async () => {
+    try {
+      console.log("Items en el carrito:", cartItems);
+
+      // Llamar al servicio para obtener la URL de checkout
+      const checkoutUrl = await createStripeCheckoutSession(cartItems);
+
+      // Redirigir solo si la URL es válida
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      }
+    } catch (error) {
+      console.error("Error durante el checkout:", error);
+      alert(
+        "Hubo un problema al iniciar el proceso de pago. Inténtalo de nuevo."
+      );
+    }
+  };
 
   useEffect(() => {
     document.querySelector("body").classList.remove("overflow-hidden");
@@ -231,7 +245,9 @@ const Cart = () => {
                     <Anchor
                       path="#"
                       className="lezada-button lezada-button--medium"
-                      onClick={()=>{stripeCheckOut()}}
+                      onClick={() => {
+                        stripeCheckOut();
+                      }}
                     >
                       proceed to checkout
                     </Anchor>

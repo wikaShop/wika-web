@@ -263,3 +263,53 @@ export const cartItemStock = (item, color, size) => {
       .size.filter((single) => single.name === size)[0].stock;
   }
 };
+
+export const fetchProducts = async () => {
+  try {
+    const response = await apiClient.get("/product");
+    console.log("entro al fetch");
+    const products = response.data.data.map((product) => ({
+      ...product,
+      category: [],
+      discount: 0,
+      image: [],
+    }));
+    return products;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error;
+  }
+};
+
+export const createStripeCheckoutSession = async (cartItems) => {
+  try {
+    // Formatear los productos antes de enviarlos al API
+    const products = cartItems.map((item) => ({
+      name: item.name,
+      quantity: item.quantity,
+      image: item.images[0]?.url, // Asegura que la imagen exista
+      price: item.price,
+    }));
+
+    console.log("Enviando productos a la API:", products);
+
+    // Llamada al API
+    const response = await apiClient.post(
+      "/payment/create-checkout-session",
+      products
+    );
+
+    console.log(response.data);
+
+    // Validar la respuesta del API
+    if (response.data?.statusCode == 200 && response.data?.data) {
+      console.log("Checkout URL recibido:", response.data.data);
+      return response.data.data; // Retorna la URL para el checkout
+    } else {
+      throw new Error("Respuesta inválida del servidor");
+    }
+  } catch (error) {
+    console.error("Error al crear la sesión de checkout:", error);
+    throw error; // Lanza el error para manejarlo en el componente
+  }
+};

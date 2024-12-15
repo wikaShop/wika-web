@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Anchor from "../../anchor"
+import Anchor from "../../anchor";
 import apiClient from "../../../axios/axios";
 
 const MobileMenuNav = ({ getActiveStatus }) => {
@@ -21,9 +21,8 @@ const MobileMenuNav = ({ getActiveStatus }) => {
     const offCanvasNav = document.querySelector(
       "#offcanvas-mobile-menu__navigation"
     );
-    const offCanvasNavSubMenu = offCanvasNav.querySelectorAll(
-      ".mobile-sub-menu"
-    );
+    const offCanvasNavSubMenu =
+      offCanvasNav.querySelectorAll(".mobile-sub-menu");
     const anchorLinks = offCanvasNav.querySelectorAll("a");
 
     for (let i = 0; i < offCanvasNavSubMenu.length; i++) {
@@ -58,44 +57,29 @@ const MobileMenuNav = ({ getActiveStatus }) => {
       id="offcanvas-mobile-menu__navigation"
     >
       <ul>
-        <li className="menu-item"> 
-          <Anchor path="/">
-            Home
-          </Anchor>
+        <li className="menu-item">
+          <Anchor path="/">Home</Anchor>
         </li>
 
         <li className="menu-item-has-children">
-          <Anchor path="/shop/left-sidebar">
-            Shop
-          </Anchor>
-          
+          <Anchor path="/shop/left-sidebar">Shop</Anchor>
+
           <ul className="mobile-sub-menu">
-          {categories.map((category)=>
-            (<>
-            <li className="menu-item-has-children">
-              <Anchor path="/shop/left-sidebar">
-                {category.name}
-              </Anchor>
+            {categories.map((category) => (
+              <li className="menu-item-has-children" key={category.id}>
+                <Anchor path="/shop/left-sidebar">{category.name}</Anchor>
               </li>
-            </>)
-          )}
+            ))}
           </ul>
         </li>
 
-        <li className="menu-item"> 
-          <Anchor path="/">
-            About us
-          </Anchor>
-
+        <li className="menu-item">
+          <Anchor path="/">About us</Anchor>
         </li>
 
-        <li className="menu-item"> 
-          <Anchor path="/">
-            Contact
-          </Anchor>
-
+        <li className="menu-item">
+          <Anchor path="/">Contact</Anchor>
         </li>
-
       </ul>
     </nav>
   );

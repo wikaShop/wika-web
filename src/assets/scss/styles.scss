@@ -112,3 +112,96 @@ p.wika-font {
     font-size: 1em; /* Tamaño reducido en pantallas pequeñas */
   }
 }
+
+/* General container for centering content */
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f4f6; /* Fondo gris claro */
+  margin: 0;
+}
+
+/* The card with success content */
+.success-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px;
+}
+
+/* Image styling */
+.success-image {
+  width: 100%;
+  max-width: 300px; /* Limita el ancho máximo */
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+/* Title styling */
+.success-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4caf50; /* Verde para éxito */
+  margin-bottom: 10px;
+}
+
+/* Icon styling */
+.success-icon {
+  font-size: 3rem;
+  color: #4caf50; /* Verde para éxito */
+  margin-bottom: 20px;
+}
+
+/* Message styling */
+.success-message {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+.success-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.success-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .success-card {
+    padding: 15px;
+  }
+
+  .success-title {
+    font-size: 1.5rem;
+  }
+
+  .success-icon {
+    font-size: 2.5rem;
+  }
+
+  .success-message {
+    font-size: 1rem;
+  }
+
+  .success-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

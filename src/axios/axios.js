@@ -3,11 +3,12 @@ import axios from "axios";
 
 // Crear una instancia de Axios
 const apiClient = axios.create({
-    baseURL: 'https://api-mvw4nmcgga-uc.a.run.app', // Reemplaza con tu URL base
-    headers: {
-        'Content-Type': 'application/json',
-        //'Authorization': 'Bearer YOUR_API_KEY', // Reemplaza con tu clave API
-    },
+  baseURL: "https://api-mvw4nmcgga-uc.a.run.app", // Reemplaza con tu URL base
+  //baseURL: "https://0fllwjx2-3000.use2.devtunnels.ms/",
+  headers: {
+    "Content-Type": "application/json",
+    //'Authorization': 'Bearer YOUR_API_KEY', // Reemplaza con tu clave API
+  },
 });
 
 // Opcional: Puedes configurar interceptores para manejar respuestas o errores de manera global
