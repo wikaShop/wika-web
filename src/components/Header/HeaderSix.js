@@ -60,7 +60,7 @@ const HeaderSix = ({ aboutOverlay }) => {
           <Container>
             <Row className="multilevel-header__top">
               <Col lg={4} className="d-none d-lg-block">
-                <div className="d-flex">
+                {/* <div className="d-flex">
                   <div className="language-change change-dropdown">
                     <span>English</span> <IoIosArrowDown />
                     <ul>
@@ -73,7 +73,7 @@ const HeaderSix = ({ aboutOverlay }) => {
                     </ul>
                   </div>
 
-                </div>
+                </div> */}
               </Col>
               <Col xs={6} lg={4} className="text-start text-lg-center">
                 {/* logo */}
@@ -99,11 +99,11 @@ const HeaderSix = ({ aboutOverlay }) => {
                         <IoIosSearch />
                       </button>
                     </li>
-                    <li>
+                    {/* <li>
                       <Anchor path="/other/login-register">
                           <IoMdPerson />
                       </Anchor>
-                    </li>
+                    </li> */}
                     <li>
                       <button
                         onClick={() => {

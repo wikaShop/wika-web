@@ -97,11 +97,11 @@ const HeaderOne = ({ aboutOverlay}) => {
                     <IoIosSearch />
                   </button>
                 </li>
-                <li>
+                {/* <li>
                   <Anchor path="/other/login-register">
                       <IoMdPerson />
                   </Anchor>
-                </li>
+                </li> */}
                 <li>
                   <button
                     onClick={() => {

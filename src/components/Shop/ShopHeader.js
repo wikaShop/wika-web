@@ -24,7 +24,7 @@ const ShopHeader = ({
 
           <Col md={7}>
             <div className="shop-header__filter-icons justify-content-center justify-content-md-end">
-              <div className="single-icon filter-dropdown">
+              {/* <div className="single-icon filter-dropdown">
                 <select
                   onChange={(e) =>
                     getFilterSortParams("filterSort", e.target.value)
@@ -34,7 +34,7 @@ const ShopHeader = ({
                   <option value="priceHighToLow">Price - High to Low</option>
                   <option value="priceLowToHigh">Price - Low to High</option>
                 </select>
-              </div>
+              </div> */}
 
               <div className="single-icon grid-icons d-none d-lg-block">
                 <button
@@ -69,14 +69,14 @@ const ShopHeader = ({
                 )}
               </div>
 
-              <div className="single-icon advance-filter-icon">
+              {/* <div className="single-icon advance-filter-icon">
                 <button
                   onClick={() => setShopTopFilterStatus(!shopTopFilterStatus)}
                   className={shopTopFilterStatus ? "active" : ""}
                 >
                   <IoMdFunnel /> Filter
                 </button>
-              </div>
+              </div> */}
             </div>
           </Col>
         </Row>

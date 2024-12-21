@@ -1,15 +1,8 @@
 import ShopHeader from "./ShopHeader";
-import ShopFilter from "./ShopFilter";
-import ShopSidebar from "./ShopSidebar";
 import ShopProducts from "./ShopProducts";
-import ShopProductsNoSpace from "./ShopProductsNoSpace";
-import ShopInfo from "./ShopInfo";
+import ShopSidebar from "./ShopSidebar";
 
 export {
-  ShopHeader,
-  ShopFilter,
-  ShopSidebar,
-  ShopProducts,
-  ShopProductsNoSpace,
-  ShopInfo
+  ShopHeader, ShopProducts, ShopSidebar
 };
+

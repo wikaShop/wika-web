@@ -281,6 +281,18 @@ export const fetchProducts = async () => {
   }
 };
 
+export const fetchProductById = async (code) => {
+  try {
+    const response = await apiClient.get(`/product/${code}`);
+    console.log("entro al fetch");
+
+    return response.data.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error;
+  }
+};
+
 export const createStripeCheckoutSession = async (cartItems) => {
   try {
     // Formatear los productos antes de enviarlos al API

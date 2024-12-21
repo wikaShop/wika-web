@@ -1,17 +1,14 @@
 {
   "hosting": {
     "site": "wika",
-    "public": "out",
+    "source": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**", 
-        "function": "nextApp" 
-      }
-    ]
+    "frameworksBackend": {
+      "region": "us-east1"
+    }
   }
 }
