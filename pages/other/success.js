@@ -1,11 +1,14 @@
+import { deleteAllFromCart } from "@src/store/slices/cart-slice";
 import { useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import Anchor from "../../src/components/anchor";
 
 const SuccessPage = () => {
+    const dispatch = useDispatch();
+  
   useEffect(() => {
-    console.log("No esta entrando");
-    localStorage.clear();
+    dispatch(deleteAllFromCart())
   }, []);
 
   return (

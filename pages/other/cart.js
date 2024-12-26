@@ -26,19 +26,9 @@ const Cart = () => {
 
   const stripeCheckOut = async () => {
     try {
-      console.log("Items en el carrito:", cartItems);
-      const productsToCheckout=cartItems.map((item)=>({
-        name:item.name,
-        quantity:item.quantity,
-        image:item.images[0].url,
-        price:item.price,
-        code:item.code
-        
-      }))
-      console.log(productsToCheckout)
-      return
+     
       // Llamar al servicio para obtener la URL de checkout
-      const checkoutUrl = await createStripeCheckoutSession(productsToCheckout);
+      const checkoutUrl = await createStripeCheckoutSession(cartItems);
 
       // Redirigir solo si la URL es válida
       if (checkoutUrl) {

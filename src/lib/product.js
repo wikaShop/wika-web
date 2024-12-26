@@ -301,6 +301,7 @@ export const createStripeCheckoutSession = async (cartItems) => {
       quantity: item.quantity,
       image: item.images[0]?.url, // Asegura que la imagen exista
       price: item.price,
+      code: item.code,
     }));
 
     console.log("Enviando productos a la API:", products);
